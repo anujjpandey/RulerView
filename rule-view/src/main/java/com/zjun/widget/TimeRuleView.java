@@ -439,7 +439,8 @@ public class TimeRuleView extends View {
                 if (Math.abs(xVelocity) >= MIN_VELOCITY) {
                     // 惯性滑动
                     final int maxDistance = (int) (MAX_TIME_VALUE / mUnitGap * mUnitGap);
-                    mScroller.fling((int) mCurrentDistance, 0, -xVelocity, 0, 0, maxDistance, 0, 0);
+                    //Added fix for the scrolling stuck before end point if zoom in enabled.
+                    mScroller.fling((int) mCurrentDistance, 0, -xVelocity, 0, 0, maxDistance*mScale, 0, 0);
                     invalidate();
                 }
                 break;
